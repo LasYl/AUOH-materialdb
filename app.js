@@ -47,12 +47,14 @@ app.use ((req,res,next)=>{
 app.post("/api/material", material_controller.api_post_material);
 
 //READ
-//Palauttaa materiaalit datana kun api välissä, näkymänä api pois (app.get("/materials"))
+//Palauttaa materiaalit datana kun api välissä, palauttaa näkymänä kun api pois (app.get("/materials"))
 app.get("/api/materials", material_controller.api_get_materials)//ohjataan polku funktiolle api.get_materials
 
 //UPDATE
 
 //DELETE
+app.delete("/api/material:id", material_controller.api_get_materials)//Poisto mongosta
+
 
 
 //mongo salasana yhteys url

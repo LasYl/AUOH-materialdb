@@ -1,5 +1,5 @@
 
-const mongoose = require('meongoose');
+const mongoose = require('mongoose');
 //mongoosen alta schematyökalu käyttöön
 const Schema = mongoose.Schema;
 
