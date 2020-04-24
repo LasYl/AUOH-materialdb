@@ -19,7 +19,7 @@ const material_data = (req) => {
 
     return data;
 
-}
+};
 
 //CREATE
 // yksi uusi materiaali
@@ -69,12 +69,15 @@ const api_get_materials = (req, res, next) => {
 
 //UPDATE
 const api_put_material = (req, res, next) => {
+    console.log('sdbbsd')
     let id = req.params.id;
     // Apufunktiolla kutsutaan jo luotuHELPERSIIN  data
     let data = material_data(req)
 
-    material_model.findByIdAndUpdate(id, data).then( (material)=>{
-        res.send(material)
+    material_model.findByIdAndUpdate(id, data,{
+        new:true
+    }).then( (material)=>{
+        res.send(material);
     }).catch(err => {
         res.status(500);
         //lähettää virheen postmanohjelman bodyyn
