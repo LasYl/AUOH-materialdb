@@ -51,6 +51,10 @@ app.post("/api/material", material_controller.api_post_material);
 app.get("/api/materials", material_controller.api_get_materials)//ohjataan polku funktiolle api.get_materials
 
 //UPDATE
+//app.PUT korvaa täysin olemassa olevat tiedot, eli kaikki tiedot pitää antaa
+//app.PATCH korvaisi tietyt tiedot
+app.put("/api/material:id", material_controller.api_put_material)
+
 
 //DELETE
 app.delete("/api/material:id", material_controller.api_get_materials)//Poisto mongosta

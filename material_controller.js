@@ -3,10 +3,8 @@
 // määritetään viitaten tiedostoon material_model
 const material_model = require('./material_model')
 
-//CREATE
-// yksi uusi materiaali
-const api_post_material = (req, res, next) => {
-    console.log('api_post_material');
+//HELPERS
+const material_data = (req) => {
     //data talteen, määritetään luotavat arvot
     let data = {
         name: req.body.name,
@@ -18,6 +16,18 @@ const api_post_material = (req, res, next) => {
         max_strength_density: req.body.max_strength / req.body.min_density
 
     };
+
+    return data;
+
+}
+
+//CREATE
+// yksi uusi materiaali
+const api_post_material = (req, res, next) => {
+    console.log('api_post_material');
+    // Apufunktiolla kutsutaan jo luotuHELPERSIIN  data
+    let data = material_data(req)
+  
 
     let new_material = material_model(data);
 
@@ -55,9 +65,24 @@ const api_get_materials = (req, res, next) => {
         console.log('virhe tallennuksessa');
 
     });
-  } 
+  }; 
 
 //UPDATE
+const api_put_material = (req, res, next) => {
+    let id = req.params.id;
+    // Apufunktiolla kutsutaan jo luotuHELPERSIIN  data
+    let data = material_data(req)
+
+    material_model.findByIdAndUpdate(id, data).then( (material)=>{
+        res.send(material)
+    }).catch(err => {
+        res.status(500);
+        //lähettää virheen postmanohjelman bodyyn
+        res.send(err.errmsg);
+        console.log('virhe päivityksessä');
+
+    });
+};
 
 //DELETE
 
@@ -81,3 +106,4 @@ const api_delete_material = (req, res, next) => {
 module.exports.api_post_material = api_post_material;
 module.exports.api_get_materials = api_get_materials;
 module.exports.api_delete_material = api_delete_material;
+module.exports.api_put_material = api_put_material;
