@@ -59,8 +59,8 @@ app.put("/api/material:id", material_controller.api_put_material)
 //DELETE
 app.delete("/api/material:id", material_controller.api_get_materials)//Poisto mongosta
 
-
-
+//Vaihdetaan vain databasen
+//const database_url = "mongodb+srv://server:YoPkSBnxekTpsCE3@cluster0-fanmv.mongodb.net/koneistusdb?retryWrites=true&w=majority"
 //mongo salasana yhteys url
 const database_url = "mongodb+srv://server:YoPkSBnxekTpsCE3@cluster0-fanmv.mongodb.net/materialdb?retryWrites=true&w=majority"
 //yhteyden luonti mongoon
